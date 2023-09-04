@@ -6,12 +6,11 @@ public class ObjectsInteractionTask5 : MonoBehaviour
     [SerializeField] private Shelf[] _shelfs;
     private void Awake()
     {
-        _shelfs = FindObjectsOfType<Shelf>();
-        var _shelf = _shelfs[0];
-        var _shelf1 = _shelfs[1];
-        
-        _shelf.ItemSpawned += CheckShelf;
-        _shelf1.ItemSpawned += CheckShelf;
+        foreach (var shelf in _shelfs)
+        {
+            shelf.ItemSpawned += CheckShelf;
+        }
+
     }
 
     private void CheckShelf()
@@ -21,6 +20,7 @@ public class ObjectsInteractionTask5 : MonoBehaviour
             if (shelf.ItemsCount > 3)
             {
                 shelf.Fall();
+                shelf.ItemSpawned -= CheckShelf;
             }            
         }
 
