@@ -18,6 +18,11 @@ public class ObjectsInteractionTask4 : MonoBehaviour
         Instantiate(_waffle, _waffleRoot);
         _toaster.TimerIsUp -= CreateToast;
     }
-    
+
+    private void OnDestroy()
+    {
+        _toaster.TimerIsUp -= CreateToast;
+    }
+
     // TODO: Подпишитесь на событие TimerIsUp класса Toaster созданием объекта Waffle в точке WaffleRoot (из папки Prefabs) 
 }
